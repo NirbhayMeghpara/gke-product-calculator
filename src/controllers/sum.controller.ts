@@ -1,7 +1,7 @@
 import fs from 'fs';
 import Papa from 'papaparse';
 
-const MOUNTED_DISK_PATH = '/mnt/disk';
+const STORAGE_DIR = "/nirbhay_PV_dir"
 
 export const calculateSum = async (req: any, res: any) => {
   try {
@@ -11,7 +11,7 @@ export const calculateSum = async (req: any, res: any) => {
       return res.status(400).json({ error: 'No file name provided.' });
     }
 
-    const filePath = `${MOUNTED_DISK_PATH}/${file}`;
+    const filePath = `${STORAGE_DIR}/${file}`
 
     if (!fs.existsSync(filePath)) {
       return res.status(404).json({ error: 'File not found on the mounted disk.' });
@@ -20,8 +20,8 @@ export const calculateSum = async (req: any, res: any) => {
     const sum = await calculateCSVSum(filePath, product);
     return res.status(200).json({ sum });
   } catch (error) {
-    console.error('Error calculating sum:', error);
-    return res.status(500).json({ error: 'Internal Server Error' });
+    console.error("Error calculating sum in gke-product-calculator:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 };
 

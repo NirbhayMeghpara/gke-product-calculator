@@ -9,5 +9,4 @@ app.use(bodyParser.json());
 
 app.use(sumRoute);
 
-
-app.listen(PORT, () => console.log(`Container 2 listening on port ${PORT}!`))
+app.listen(PORT, () => console.log(`gke-product-calculator listening on port ${PORT}!`))
