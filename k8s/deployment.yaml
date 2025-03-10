@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: product-calculator
-        image: us-central1-docker.pkg.dev/$PROJECT_ID/gke-product-calculator/gke-product-calculator:latest
+        image: us-central1-docker.pkg.dev/csci5409-453115/gke-product-calculator/gke-product-calculator:latest
         ports:
         - containerPort: 3000
         volumeMounts:
