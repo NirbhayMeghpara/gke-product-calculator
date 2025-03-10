@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-calculator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: product-calculator
+  template:
+    metadata:
+      labels:
+        app: product-calculator
+    spec:
+      containers:
+      - name: product-calculator
+        image: us-central1-docker.pkg.dev/$PROJECT_ID/gke-product-calculator/gke-product-calculator:latest
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+        - name: file-storage-volume
+          mountPath: /nirbhay_PV_dir
+      volumes:
+      - name: file-storage-volume
+        persistentVolumeClaim:
+          claimName: file-storage-pvc
